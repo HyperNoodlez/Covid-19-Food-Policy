@@ -1,0 +1,4191 @@
+-----------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root/session_log.log
+  log type:  text
+ opened on:  10 Apr 2024, 13:44:56
+
+. 
+. use "Master_V5.dta", clear
+
+. 
+. 
+. 
+. 
+end of do-file
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. log using "session_log.log", replace
+log file already open
+r(604);
+
+end of do-file
+
+r(604);
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, lets make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year = 2021, 1, 0)
+year=2021 invalid name
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, lets make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. 
+. 
+. 
+end of do-file
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542
+> .000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Contro
+> ls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Fun
+> ction_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------
+> ------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the dif
+> f-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------
+> ------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls
+>  used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Island
+> er alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including S
+> ome other race
+>         ALUCE010:    Two or more races: Two races excluding S
+> ome other race, and three or more races
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past
+>  12 Months
+>     Universe:    Population for whom poverty status is determ
+> ined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP
+>  in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stam
+> ps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps
+> /SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Hous
+> eholder)
+>     Universe:    Occupied housing units with a householder wh
+> o is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino 
+> Householder)
+>     Universe:    Occupied housing units with a householder wh
+> o is White alone, not Hispanic or Latino
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder wh
+> o is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 AL
+> T0E005 ALT0E006 ALT0E007 ALT0E008 ALT0E009 ALT0E010 ALT0E011 
+> ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E01
+> 8 ALT0E019 ALT0E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E
+> 025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0E031 ALT
+> 0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 A
+> LT0E039 ALT0E040 ALT0E041 ALT0E042 ALT0E043 ALT0E044 ALT0E045
+>  ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 A
+> LUCE005 ALUCE006 ALUCE007 ALUCE008 ALUCE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 AL
+> WVE004 ALWVE005 ALWVE006 ALWVE007 ALWVE008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. 
+. 
+. reg pct_food_insec_overall pre_post school_closing_c_4 pre_po
+> st##school_closing_c_4 $population $race_vector_full $inc_pov
+> _rati_vector_full $pub_assistance $tenure
+note: school_closing_c_4 omitted because of collinearity.
+note: 1.pre_post omitted because of collinearity.
+note: 0.school_closing_c_4 omitted because of collinearity.
+note: 1.pre_post#0.school_closing_c_4 omitted because of
+      collinearity.
+
+      Source |       SS           df       MS      Number of ob
+> s   =       188
+-------------+----------------------------------   F(1, 186)   
+>     =      0.00
+       Model |  9418757.45         1  9418757.45   Prob > F    
+>     =    0.9831
+    Residual |  3.8865e+12       186  2.0895e+10   R-squared   
+>     =    0.0000
+-------------+----------------------------------   Adj R-square
+> d   =   -0.0054
+       Total |  3.8865e+12       187  2.0783e+10   Root MSE    
+>     =    1.4e+05
+
+---------------------------------------------------------------
+> ---------------
+pct_food_i~l | Coefficient  Std. err.      t    P>|t|     [95% 
+> con                                                          
+>    f. interval]
+-------------+-------------------------------------------------
+> ---------------
+    pre_post |  -447.6596   21084.89    -0.02   0.983    -42043
+> .94                                                          
+>        41148.62
+school_clo~4 |          0  (omitted)
+  1.pre_post |          0  (omitted)
+0.school_c~4 |          0  (omitted)
+             |
+    pre_post#|
+school_clo~4 |
+        1 0  |          0  (omitted)
+             |
+       _cons |   81283.19   14909.27     5.45   0.000     51870
+> .18                                                          
+>        110696.2
+---------------------------------------------------------------
+> ---------------
+
+. 
+end of do-file
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and thre
+> e or more races
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months f
+> or Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African Am
+> erican alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hi
+> spanic or Latino
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007
+>  ALT0E008 ALT0E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT
+> 0E017 ALT0E018 ALT0E019 ALT0E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E02
+> 6 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 AL
+> T0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0E042 ALT0E043 ALT0E044 ALT0E0
+> 45 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE00
+> 7 ALUCE008 ALUCE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006
+>  ALWVE007 ALWVE008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. 
+. 
+. reg pct_food_insec_overall pre_post school_closing_c_4 pre_post##school_closing_c_4 $
+> population $race_vector_full $inc_pov_rati_vector_full $pub_assistance $tenure
+note: school_closing_c_4 omitted because of collinearity.
+note: 1.pre_post omitted because of collinearity.
+note: 0.school_closing_c_4 omitted because of collinearity.
+note: 1.pre_post#0.school_closing_c_4 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(1, 186)       =      0.00
+       Model |  9418757.45         1  9418757.45   Prob > F        =    0.9831
+    Residual |  3.8865e+12       186  2.0895e+10   R-squared       =    0.0000
+-------------+----------------------------------   Adj R-squared   =   -0.0054
+       Total |  3.8865e+12       187  2.0783e+10   Root MSE        =    1.4e+05
+
+--------------------------------------------------------------------------------------
+pct_food_insec_ove~l | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+---------------------+----------------------------------------------------------------
+            pre_post |  -447.6596   21084.89    -0.02   0.983    -42043.94    41148.62
+  school_closing_c_4 |          0  (omitted)
+          1.pre_post |          0  (omitted)
+0.school_closing_c_4 |          0  (omitted)
+                     |
+            pre_post#|
+  school_closing_c_4 |
+                1 0  |          0  (omitted)
+                     |
+               _cons |   81283.19   14909.27     5.45   0.000     51870.18    110696.2
+--------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and thre
+> e or more races
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months f
+> or Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African Am
+> erican alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hi
+> spanic or Latino
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007
+>  ALT0E008 ALT0E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT
+> 0E017 ALT0E018 ALT0E019 ALT0E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E02
+> 6 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 AL
+> T0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0E042 ALT0E043 ALT0E044 ALT0E0
+> 45 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE00
+> 7 ALUCE008 ALUCE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006
+>  ALWVE007 ALWVE008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. 
+. 
+. reg pct_food_insec_overall pre_post school_closing_c_2 pre_post##school_closing_c_4 $
+> population $race_vector_full $inc_pov_rati_vector_full $pub_assistance $tenure
+note: 1.pre_post omitted because of collinearity.
+note: 0.school_closing_c_4 omitted because of collinearity.
+note: 1.pre_post#0.school_closing_c_4 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(2, 185)       =      0.77
+       Model |  3.2050e+10         2  1.6025e+10   Prob > F        =    0.4649
+    Residual |  3.8544e+12       185  2.0835e+10   R-squared       =    0.0082
+-------------+----------------------------------   Adj R-squared   =   -0.0025
+       Total |  3.8865e+12       187  2.0783e+10   Root MSE        =    1.4e+05
+
+--------------------------------------------------------------------------------------
+pct_food_insec_ove~l | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+---------------------+----------------------------------------------------------------
+            pre_post |  -11560.73   22882.24    -0.51   0.614    -56704.42    33582.96
+  school_closing_c_2 |   41785.14   33694.78     1.24   0.217    -24690.29    108260.6
+          1.pre_post |          0  (omitted)
+0.school_closing_c_4 |          0  (omitted)
+                     |
+            pre_post#|
+  school_closing_c_4 |
+                1 0  |          0  (omitted)
+                     |
+               _cons |   81283.19   14887.76     5.46   0.000     51911.58    110654.8
+--------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. reg pct_food_insec_overall pre_post##school_closing_c_2 $population $race_vector_full $inc_pov_rat
+> i_vector_full $pub_assistance $tenure
+note: 0b.pre_post#1.school_closing_c_2 identifies no observations in the sample.
+note: 1.pre_post#1.school_closing_c_2 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(2, 185)       =      0.77
+       Model |  3.2050e+10         2  1.6025e+10   Prob > F        =    0.4649
+    Residual |  3.8544e+12       185  2.0835e+10   R-squared       =    0.0082
+-------------+----------------------------------   Adj R-squared   =   -0.0025
+       Total |  3.8865e+12       187  2.0783e+10   Root MSE        =    1.4e+05
+
+---------------------------------------------------------------------------------------------
+     pct_food_insec_overall | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------------+----------------------------------------------------------------
+                 1.pre_post |  -11560.73   22882.24    -0.51   0.614    -56704.42    33582.96
+       1.school_closing_c_2 |   41785.14   33694.78     1.24   0.217    -24690.29    108260.6
+                            |
+pre_post#school_closing_c_2 |
+                       0 1  |          0  (empty)
+                       1 1  |          0  (omitted)
+                            |
+                      _cons |   81283.19   14887.76     5.46   0.000     51911.58    110654.8
+---------------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. tab pre_post scholl_closing_c_2
+variable scholl_closing_c_2 not found
+r(111);
+
+. tab pre_post school_closing_c_2
+
+           |  school_closing_c_2
+  pre_post |         0          1 |     Total
+-----------+----------------------+----------
+         0 |        94          0 |        94 
+         1 |        69         25 |        94 
+-----------+----------------------+----------
+     Total |       163         25 |       188 
+
+. tab school_closing_c_2
+
+school_clos |
+    ing_c_2 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        163       86.70       86.70
+          1 |         25       13.30      100.00
+------------+-----------------------------------
+      Total |        188      100.00
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more rac
+> es
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lat
+> ino
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT
+> 0E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 AL
+> T0E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 A
+> LT0E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 
+> ALT0E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 AL
+> UCE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALW
+> VE008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. 
+. 
+. reg pct_food_insec_overall pre_post##school_closing_c_2 $population $race_vector_full $inc_pov_rat
+> i_vector_full $pub_assistance $tenure
+note: 0b.pre_post#1.school_closing_c_2 identifies no observations in the sample.
+note: 1.pre_post#1.school_closing_c_2 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(2, 185)       =      0.77
+       Model |  3.2050e+10         2  1.6025e+10   Prob > F        =    0.4649
+    Residual |  3.8544e+12       185  2.0835e+10   R-squared       =    0.0082
+-------------+----------------------------------   Adj R-squared   =   -0.0025
+       Total |  3.8865e+12       187  2.0783e+10   Root MSE        =    1.4e+05
+
+---------------------------------------------------------------------------------------------
+     pct_food_insec_overall | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------------+----------------------------------------------------------------
+                 1.pre_post |  -11560.73   22882.24    -0.51   0.614    -56704.42    33582.96
+       1.school_closing_c_2 |   41785.14   33694.78     1.24   0.217    -24690.29    108260.6
+                            |
+pre_post#school_closing_c_2 |
+                       0 1  |          0  (empty)
+                       1 1  |          0  (omitted)
+                            |
+                      _cons |   81283.19   14887.76     5.46   0.000     51911.58    110654.8
+---------------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root/Do-File.do"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more rac
+> es
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lat
+> ino
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT
+> 0E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 AL
+> T0E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 A
+> LT0E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 
+> ALT0E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 AL
+> UCE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALW
+> VE008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. 
+. 
+. reg pct_food_insec_overall pre_post##school_closing_c_2 `population' `race_vector_full' `inc_pov_r
+> ati_vector_full' `pub_assistance' `tenure'
+note: 0b.pre_post#1.school_closing_c_2 identifies no observations in the sample.
+note: 1.pre_post#1.school_closing_c_2 omitted because of collinearity.
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(20, 167)      =   2230.05
+       Model |  3.8720e+12        20  1.9360e+11   Prob > F        =    0.0000
+    Residual |  1.4498e+10       167  86813257.2   R-squared       =    0.9963
+-------------+----------------------------------   Adj R-squared   =    0.9958
+       Total |  3.8865e+12       187  2.0783e+10   Root MSE        =    9317.4
+
+---------------------------------------------------------------------------------------------
+     pct_food_insec_overall | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------------+----------------------------------------------------------------
+                 1.pre_post |  -3937.153   1677.404    -2.35   0.020    -7248.803    -625.504
+       1.school_closing_c_2 |   2035.958   2363.993     0.86   0.390    -2631.205    6703.121
+                            |
+pre_post#school_closing_c_2 |
+                       0 1  |          0  (empty)
+                       1 1  |          0  (omitted)
+                            |
+                   ALUBE001 |  -.4723383   .1600101    -2.95   0.004    -.7882416    -.156435
+                   ALUCE001 |          0  (omitted)
+                   ALUCE002 |  -.0146405   .1202053    -0.12   0.903    -.2519583    .2226773
+                   ALUCE003 |  -.0293294   .1184762    -0.25   0.805    -.2632334    .2045747
+                   ALUCE004 |   .8128688   .3225807     2.52   0.013      .176007    1.449731
+                   ALUCE005 |   -.021354    .119774    -0.18   0.859    -.2578203    .2151122
+                   ALUCE006 |  -.8825748   .6574226    -1.34   0.181    -2.180505    .4153555
+                   ALUCE007 |  -.0938095   .1153447    -0.81   0.417    -.3215313    .1339123
+                   ALUCE008 |          0  (omitted)
+                   ALUCE009 |  -.0393156   .1258585    -0.31   0.755    -.2877944    .2091633
+                   ALUCE010 |          0  (omitted)
+                   ALWVE001 |    .412161   .1397158     2.95   0.004     .1363242    .6879978
+                   ALWVE002 |   .4986888   .1265203     3.94   0.000     .2489034    .7484742
+                   ALWVE003 |  -.1543854   .1286808    -1.20   0.232    -.4084363    .0996654
+                   ALWVE004 |   .3716455    .275363     1.35   0.179    -.1719957    .9152866
+                   ALWVE005 |   .7405853   .2460958     3.01   0.003     .2547256    1.226445
+                   ALWVE006 |   .0679938   .1431477     0.47   0.635    -.2146186    .3506062
+                   ALWVE007 |   1.002156   .3349137     2.99   0.003     .3409456    1.663366
+                   ALWVE008 |          0  (omitted)
+                   ALXME001 |   .2730632   .0365157     7.48   0.000     .2009713    .3451551
+                   ALXME002 |   .2321922   .0979854     2.37   0.019     .0387425    .4256418
+                   ALXME003 |          0  (omitted)
+                   ALZLE001 |          0  (omitted)
+                   ALZLE002 |   .0084401   .0472237     0.18   0.858    -.0847922    .1016724
+                   ALZLE003 |          0  (omitted)
+                      _cons |   1260.661   1342.357     0.94   0.349    -1389.515    3910.837
+---------------------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. duplicates report fips year
+
+Duplicates in terms of fips year
+
+--------------------------------------
+   Copies | Observations       Surplus
+----------+---------------------------
+        1 |          188             0
+--------------------------------------
+
+. do "/Users/shivgarge/Desktop/Root/Research/Thesi
+> s/Data/Controls/Function_base/Root/Do-File.do"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesi
+> s/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data
+> /Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *-----------------------------------------------
+> -------------------------------*
+. 
+. *First, let's make sure there is a pre-post dumm
+> y for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *-----------------------------------------------
+> -------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catag
+> ories.
+> 
+> Below is the variable dictionary for the univers
+> e of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American a
+> lone
+>         ALUCE004:    American Indian and Alaska 
+> Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other P
+> acific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two race
+> s including Some other race
+>         ALUCE010:    Two or more races: Two race
+> s excluding Some other race, and three or more r
+> aces
+>  
+>     Table 4:     Ratio of Income to Poverty Leve
+> l in the Past 12 Months
+>     Universe:    Population for whom poverty sta
+> tus is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Foo
+> d Stamps/SNAP in the Past 12 Months for Househol
+> ds
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance
+>  or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance o
+> r Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African Americ
+> an Alone Householder)
+>     Universe:    Occupied housing units with a h
+> ouseholder who is Black or African American alon
+> e
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispan
+> ic or Latino Householder)
+>     Universe:    Occupied housing units with a h
+> ouseholder who is White alone, not Hispanic or L
+> atino
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Hous
+> eholder)
+>     Universe:    Occupied housing units with a h
+> ouseholder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E00
+> 3 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 A
+> LT0E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0
+> E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E01
+> 9 ALT0E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 A
+> LT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0
+> E030 ALT0E031 ALT0E032 ALT0E033 ALT0E034 ALT0E03
+> 5 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 A
+> LT0E041 ALT0E042 ALT0E043 ALT0E044 ALT0E045 ALT0
+> E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE0
+> 03 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 
+> ALUCE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE00
+> 2 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 A
+> LWVE008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003
+> "
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002
+>  ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE00
+> 3"
+
+. 
+. *Race Based control groups
+. 
+. bysort fips: egen maxtreat = max(school_closing_
+> c_2)
+
+. 
+. reg pct_food_insec_overall pre_post##maxtreat `p
+> opulation' `race_vector_full' `inc_pov_rati_vect
+> or_full' `pub_assistance' `tenure'
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+      Source |       SS           df       MS     
+>  Number of obs   =       188
+-------------+----------------------------------  
+>  F(21, 166)      =   2125.50
+       Model |  3.8721e+12        21  1.8438e+11  
+>  Prob > F        =    0.0000
+    Residual |  1.4400e+10       166    86748364  
+>  R-squared       =    0.9963
+-------------+----------------------------------  
+>  Adj R-squared   =    0.9958
+       Total |  3.8865e+12       187  2.0783e+10  
+>  Root MSE        =    9313.9
+
+--------------------------------------------------
+> ----------------------------
+pct_food_i~l | Coefficient  Std. err.      t    P>
+> |t|                                             
+>         [95% con                                
+>                 f. interval]
+-------------+------------------------------------
+> ----------------------------
+  1.pre_post |  -4502.632   1759.499    -2.56   0.
+> 011                                             
+>        -7976.512                                
+>                    -1028.753
+  1.maxtreat |  -2548.638   2402.957    -1.06   0.
+> 290                                             
+>        -7292.935                                
+>                     2195.659
+             |
+    pre_post#|
+    maxtreat |
+        1 1  |   4365.991   3226.519     1.35   0.
+> 178                                             
+>        -2004.312                                
+>                     10736.29
+             |
+    ALUBE001 |  -.4714724   .1599524    -2.95   0.
+> 004                                             
+>        -.7872756                                
+>                    -.1556692
+    ALUCE001 |          0  (omitted)
+    ALUCE002 |  -.0173681   .1201879    -0.14   0.
+> 885                                             
+>        -.2546619                                
+>                     .2199258
+    ALUCE003 |  -.0331529   .1184867    -0.28   0.
+> 780                                             
+>        -.2670881                                
+>                     .2007823
+    ALUCE004 |   .8244284   .3226443     2.56   0.
+> 012                                             
+>         .1874132                                
+>                     1.461444
+    ALUCE005 |  -.0231379    .119741    -0.19   0.
+> 847                                             
+>        -.2595495                                
+>                     .2132737
+    ALUCE006 |  -.8564694   .6576376    -1.30   0.
+> 195                                             
+>        -2.154881                                
+>                     .4419424
+    ALUCE007 |  -.0978133   .1153634    -0.85   0.
+> 398                                             
+>         -.325582                                
+>                     .1299553
+    ALUCE008 |          0  (omitted)
+    ALUCE009 |  -.0404021   .1258156    -0.32   0.
+> 749                                             
+>        -.2888072                                
+>                      .208003
+    ALUCE010 |          0  (omitted)
+    ALWVE001 |   .4140301   .1396747     2.96   0.
+> 003                                             
+>         .1382623                                
+>                     .6897978
+    ALWVE002 |   .5076851   .1267571     4.01   0.
+> 000                                             
+>         .2574211                                
+>                      .757949
+    ALWVE003 |  -.1443453   .1289806    -1.12   0.
+> 265                                             
+>        -.3989991                                
+>                     .1103086
+    ALWVE004 |   .4076058   .2773403     1.47   0.
+> 144                                             
+>        -.1399631                                
+>                     .9551748
+    ALWVE005 |   .7239654   .2465024     2.94   0.
+> 004                                             
+>         .2372815                                
+>                     1.210649
+    ALWVE006 |   .0603601   .1432751     0.42   0.
+> 674                                             
+>        -.2225162                                
+>                     .3432364
+    ALWVE007 |   .9503894   .3383275     2.81   0.
+> 006                                             
+>         .2824098                                
+>                     1.618369
+    ALWVE008 |          0  (omitted)
+    ALXME001 |   .2753312   .0365646     7.53   0.
+> 000                                             
+>         .2031395                                
+>                     .3475228
+    ALXME002 |   .2135388   .0995151     2.15   0.
+> 033                                             
+>         .0170603                                
+>                     .4100172
+    ALXME003 |          0  (omitted)
+    ALZLE001 |          0  (omitted)
+    ALZLE002 |    .005851   .0472691     0.12   0.
+> 902                                             
+>        -.0874751                                
+>                     .0991771
+    ALZLE003 |          0  (omitted)
+       _cons |   1916.888   1477.628     1.30   0.
+> 196                                             
+>        -1000.479                                
+>                     4834.254
+--------------------------------------------------
+> ----------------------------
+
+. 
+end of do-file
+
+. do "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root/Do-File.do"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. bysort fips: egen maxtreat = max(school_closing_c_2)
+
+. 
+. reg pct_food_insec_overall pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_
+> full' `pub_assistance' `tenure'
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(21, 166)      =   2125.50
+       Model |  3.8721e+12        21  1.8438e+11   Prob > F        =    0.0000
+    Residual |  1.4400e+10       166    86748364   R-squared       =    0.9963
+-------------+----------------------------------   Adj R-squared   =    0.9958
+       Total |  3.8865e+12       187  2.0783e+10   Root MSE        =    9313.9
+
+-----------------------------------------------------------------------------------
+pct_food_insec_~l | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -4502.632   1759.499    -2.56   0.011    -7976.512   -1028.753
+       1.maxtreat |  -2548.638   2402.957    -1.06   0.290    -7292.935    2195.659
+                  |
+pre_post#maxtreat |
+             1 1  |   4365.991   3226.519     1.35   0.178    -2004.312    10736.29
+                  |
+         ALUBE001 |  -.4714724   .1599524    -2.95   0.004    -.7872756   -.1556692
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -.0173681   .1201879    -0.14   0.885    -.2546619    .2199258
+         ALUCE003 |  -.0331529   .1184867    -0.28   0.780    -.2670881    .2007823
+         ALUCE004 |   .8244284   .3226443     2.56   0.012     .1874132    1.461444
+         ALUCE005 |  -.0231379    .119741    -0.19   0.847    -.2595495    .2132737
+         ALUCE006 |  -.8564694   .6576376    -1.30   0.195    -2.154881    .4419424
+         ALUCE007 |  -.0978133   .1153634    -0.85   0.398     -.325582    .1299553
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -.0404021   .1258156    -0.32   0.749    -.2888072     .208003
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |   .4140301   .1396747     2.96   0.003     .1382623    .6897978
+         ALWVE002 |   .5076851   .1267571     4.01   0.000     .2574211     .757949
+         ALWVE003 |  -.1443453   .1289806    -1.12   0.265    -.3989991    .1103086
+         ALWVE004 |   .4076058   .2773403     1.47   0.144    -.1399631    .9551748
+         ALWVE005 |   .7239654   .2465024     2.94   0.004     .2372815    1.210649
+         ALWVE006 |   .0603601   .1432751     0.42   0.674    -.2225162    .3432364
+         ALWVE007 |   .9503894   .3383275     2.81   0.006     .2824098    1.618369
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   .2753312   .0365646     7.53   0.000     .2031395    .3475228
+         ALXME002 |   .2135388   .0995151     2.15   0.033     .0170603    .4100172
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |    .005851   .0472691     0.12   0.902    -.0874751    .0991771
+         ALZLE003 |          0  (omitted)
+            _cons |   1916.888   1477.628     1.30   0.196    -1000.479    4834.254
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. sum pct_food_insec_overall, d
+
+                   pct_food_insec_overall
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         5900           5230
+ 5%         9800           5900
+10%        11650           8690       Obs                 188
+25%        18255           8760       Sum of wgt.         188
+
+50%        34530                      Mean           81059.36
+                        Largest       Std. dev.      144163.9
+75%        72240         644710
+90%       220500         647450       Variance       2.08e+10
+95%       297010        1079900       Skewness       4.751207
+99%      1079900        1132600       Kurtosis       30.63045
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. bysort fips: egen maxtreat = max(school_closing_c_2)
+
+. 
+. reg cost_per_meal pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_full' `pu
+> b_assistance' `tenure'
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(21, 166)      =     13.69
+       Model |  40.3805504        21  1.92288335   Prob > F        =    0.0000
+    Residual |  23.3103198       166  .140423613   R-squared       =    0.6340
+-------------+----------------------------------   Adj R-squared   =    0.5877
+       Total |  63.6908702       187  .340592889   Root MSE        =    .37473
+
+-----------------------------------------------------------------------------------
+    cost_per_meal | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |   .4237791    .070791     5.99   0.000     .2840123     .563546
+       1.maxtreat |   .3497682   .0966797     3.62   0.000     .1588878    .5406486
+                  |
+pre_post#maxtreat |
+             1 1  |   .1312376   .1298146     1.01   0.314    -.1250629    .3875381
+                  |
+         ALUBE001 |  -7.89e-06   6.44e-06    -1.23   0.222    -.0000206    4.81e-06
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -2.38e-06   4.84e-06    -0.49   0.624    -.0000119    7.17e-06
+         ALUCE003 |  -2.81e-06   4.77e-06    -0.59   0.557    -.0000122    6.60e-06
+         ALUCE004 |  -.0000218    .000013    -1.68   0.096    -.0000474    3.87e-06
+         ALUCE005 |  -2.76e-06   4.82e-06    -0.57   0.567    -.0000123    6.75e-06
+         ALUCE006 |  -.0000155   .0000265    -0.59   0.558    -.0000678    .0000367
+         ALUCE007 |  -1.11e-08   4.64e-06    -0.00   0.998    -9.18e-06    9.15e-06
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -4.01e-06   5.06e-06    -0.79   0.429     -.000014    5.98e-06
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |   8.32e-06   5.62e-06     1.48   0.140    -2.77e-06    .0000194
+         ALWVE002 |  -4.43e-06   5.10e-06    -0.87   0.386    -.0000145    5.64e-06
+         ALWVE003 |  -2.23e-06   5.19e-06    -0.43   0.668    -.0000125    8.02e-06
+         ALWVE004 |   .0000142   .0000112     1.27   0.206    -7.86e-06    .0000362
+         ALWVE005 |  -.0000102   9.92e-06    -1.02   0.307    -.0000297    9.43e-06
+         ALWVE006 |  -4.81e-06   5.76e-06    -0.84   0.405    -.0000162    6.57e-06
+         ALWVE007 |  -.0000238   .0000136    -1.75   0.082    -.0000507    3.08e-06
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   8.61e-06   1.47e-06     5.85   0.000     5.70e-06    .0000115
+         ALXME002 |   3.80e-06   4.00e-06     0.95   0.344    -4.11e-06    .0000117
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |   3.84e-07   1.90e-06     0.20   0.840    -3.37e-06    4.14e-06
+         ALZLE003 |          0  (omitted)
+            _cons |   3.259076   .0594504    54.82   0.000       3.1417    3.376453
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. sum cost_pre_meal, d
+variable cost_pre_meal not found
+r(111);
+
+. sum cost_per_meal, d
+
+                        cost_per_meal
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         2.65           2.64
+ 5%         2.91           2.65
+10%         3.01           2.73       Obs                 188
+25%        3.255           2.75       Sum of wgt.         188
+
+50%         3.63                      Mean            3.68734
+                        Largest       Std. dev.      .5836034
+75%            4           5.16
+90%         4.41           5.26       Variance       .3405929
+95%         4.69           5.96       Skewness        .939218
+99%         5.96           6.04       Kurtosis       4.662401
+
+. do "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root/Do-File.do"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. bysort fips: egen maxtreat = max(school_closing_c_2)
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_fu
+> ll' `pub_assistance' `tenure'
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(21, 166)      =      9.55
+       Model |  .097077947        21  .004622759   Prob > F        =    0.0000
+    Residual |  .080393772       166    .0004843   R-squared       =    0.5470
+-------------+----------------------------------   Adj R-squared   =    0.4897
+       Total |  .177471718       187  .000949047   Root MSE        =    .02201
+
+-----------------------------------------------------------------------------------
+ovrl_food_insec~e | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0087371   .0041573    -2.10   0.037    -.0169452    -.000529
+       1.maxtreat |  -.0029227   .0056777    -0.51   0.607    -.0141325    .0082872
+                  |
+pre_post#maxtreat |
+             1 1  |   .0023662   .0076236     0.31   0.757    -.0126855    .0174179
+                  |
+         ALUBE001 |   5.58e-07   3.78e-07     1.48   0.142    -1.88e-07    1.30e-06
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -1.18e-07   2.84e-07    -0.42   0.679    -6.79e-07    4.43e-07
+         ALUCE003 |  -9.57e-08   2.80e-07    -0.34   0.733    -6.48e-07    4.57e-07
+         ALUCE004 |   1.62e-06   7.62e-07     2.12   0.035     1.12e-07    3.12e-06
+         ALUCE005 |  -5.79e-08   2.83e-07    -0.20   0.838    -6.16e-07    5.01e-07
+         ALUCE006 |  -1.04e-06   1.55e-06    -0.67   0.504    -4.11e-06    2.03e-06
+         ALUCE007 |  -2.31e-07   2.73e-07    -0.85   0.398    -7.69e-07    3.07e-07
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -1.23e-07   2.97e-07    -0.41   0.680    -7.10e-07    4.64e-07
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |  -5.76e-07   3.30e-07    -1.75   0.083    -1.23e-06    7.52e-08
+         ALWVE002 |   6.31e-07   3.00e-07     2.11   0.037     3.99e-08    1.22e-06
+         ALWVE003 |   2.92e-07   3.05e-07     0.96   0.339    -3.09e-07    8.94e-07
+         ALWVE004 |  -5.86e-07   6.55e-07    -0.89   0.373    -1.88e-06    7.08e-07
+         ALWVE005 |   9.72e-07   5.82e-07     1.67   0.097    -1.78e-07    2.12e-06
+         ALWVE006 |   5.10e-08   3.39e-07     0.15   0.880    -6.17e-07    7.19e-07
+         ALWVE007 |   1.21e-06   7.99e-07     1.51   0.132    -3.69e-07    2.79e-06
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   6.63e-08   8.64e-08     0.77   0.444    -1.04e-07    2.37e-07
+         ALXME002 |  -3.08e-07   2.35e-07    -1.31   0.191    -7.73e-07    1.56e-07
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |  -3.72e-08   1.12e-07    -0.33   0.740    -2.58e-07    1.83e-07
+         ALZLE003 |          0  (omitted)
+            _cons |   .1228104   .0034913    35.18   0.000     .1159173    .1297036
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. tab school_closing_c
+
+school_clos |
+      ing_c |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |         96       51.06       51.06
+          1 |         53       28.19       79.26
+          2 |         25       13.30       92.55
+          3 |         11        5.85       98.40
+         99 |          3        1.60      100.00
+------------+-----------------------------------
+      Total |        188      100.00
+
+. tab school_closing_c school_closing_c_2, m
+
+school_clo |  school_closing_c_2
+    sing_c |         0          1 |     Total
+-----------+----------------------+----------
+         0 |        96          0 |        96 
+         1 |        53          0 |        53 
+         2 |         0         25 |        25 
+         3 |        11          0 |        11 
+        99 |         3          0 |         3 
+-----------+----------------------+----------
+     Total |       163         25 |       188 
+
+. tab school_closing_c maxtreat, m
+
+school_clo |       maxtreat
+    sing_c |         0          1 |     Total
+-----------+----------------------+----------
+         0 |        71         25 |        96 
+         1 |        53          0 |        53 
+         2 |         0         25 |        25 
+         3 |        11          0 |        11 
+        99 |         3          0 |         3 
+-----------+----------------------+----------
+     Total |       138         50 |       188 
+
+. sort fips year
+
+. browse fips year school_closing_c* maxtreat
+
+. do "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root/Do-File.do"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. sort fips year
+
+. gen treat = school_closing_c>1 if school_closing_c!=99
+(3 missing values generated)
+
+. 
+. bysort fips: egen maxtreat = max(treat)
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_fu
+> ll' `pub_assistance' `tenure'
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(21, 166)      =     10.51
+       Model |   .10128499        21  .004823095   Prob > F        =    0.0000
+    Residual |  .076186728       166  .000458956   R-squared       =    0.5707
+-------------+----------------------------------   Adj R-squared   =    0.5164
+       Total |  .177471718       187  .000949047   Root MSE        =    .02142
+
+-----------------------------------------------------------------------------------
+ovrl_food_insec~e | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0106475   .0044008    -2.42   0.017    -.0193362   -.0019588
+       1.maxtreat |   -.014185   .0051149    -2.77   0.006    -.0242836   -.0040863
+                  |
+pre_post#maxtreat |
+             1 1  |   .0056833    .006672     0.85   0.396    -.0074897    .0188562
+                  |
+         ALUBE001 |   5.98e-07   3.68e-07     1.62   0.106    -1.29e-07    1.32e-06
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -2.48e-07   2.79e-07    -0.89   0.376    -8.00e-07    3.03e-07
+         ALUCE003 |  -2.36e-07   2.76e-07    -0.86   0.394    -7.82e-07    3.09e-07
+         ALUCE004 |   1.38e-06   7.44e-07     1.86   0.065    -8.73e-08    2.85e-06
+         ALUCE005 |  -1.87e-07   2.78e-07    -0.67   0.503    -7.36e-07    3.63e-07
+         ALUCE006 |  -9.33e-07   1.51e-06    -0.62   0.537    -3.91e-06    2.05e-06
+         ALUCE007 |  -3.60e-07   2.68e-07    -1.34   0.182    -8.90e-07    1.71e-07
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -2.51e-07   2.92e-07    -0.86   0.390    -8.28e-07    3.25e-07
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |  -4.92e-07   3.22e-07    -1.53   0.129    -1.13e-06    1.44e-07
+         ALWVE002 |   7.06e-07   2.92e-07     2.41   0.017     1.29e-07    1.28e-06
+         ALWVE003 |   3.16e-07   2.96e-07     1.07   0.288    -2.69e-07    9.00e-07
+         ALWVE004 |  -4.84e-07   6.36e-07    -0.76   0.448    -1.74e-06    7.71e-07
+         ALWVE005 |   8.11e-07   5.67e-07     1.43   0.154    -3.08e-07    1.93e-06
+         ALWVE006 |   7.97e-08   3.29e-07     0.24   0.809    -5.70e-07    7.30e-07
+         ALWVE007 |   1.16e-06   7.74e-07     1.50   0.137    -3.71e-07    2.68e-06
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   7.94e-08   8.41e-08     0.94   0.346    -8.66e-08    2.45e-07
+         ALXME002 |  -3.57e-07   2.28e-07    -1.57   0.119    -8.07e-07    9.25e-08
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |  -4.93e-08   1.09e-07    -0.45   0.651    -2.64e-07    1.65e-07
+         ALZLE003 |          0  (omitted)
+            _cons |   .1277587   .0037022    34.51   0.000     .1204493    .1350682
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root/Do-File.do"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. sort fips year
+
+. gen treat = school_closing_c>1 if school_closing_c!=99
+(3 missing values generated)
+
+. 
+. bysort fips: egen maxtreat = max(treat)
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat, robust
+
+Linear regression                               Number of obs     =        188
+                                                F(3, 184)         =       2.87
+                                                Prob > F          =     0.0380
+                                                R-squared         =     0.0426
+                                                Root MSE          =     .03039
+
+-----------------------------------------------------------------------------------
+                  |               Robust
+ovrl_food_insec~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0100517   .0060779    -1.65   0.100    -.0220431    .0019396
+       1.maxtreat |  -.0107059   .0064011    -1.67   0.096     -.023335    .0019231
+                  |
+pre_post#maxtreat |
+             1 1  |   .0030517    .008661     0.35   0.725    -.0140358    .0201393
+                  |
+            _cons |   .1198448   .0044476    26.95   0.000       .11107    .1286197
+-----------------------------------------------------------------------------------
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_fu
+> ll' `pub_assistance' `tenure'
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+      Source |       SS           df       MS      Number of obs   =       188
+-------------+----------------------------------   F(21, 166)      =     10.51
+       Model |   .10128499        21  .004823095   Prob > F        =    0.0000
+    Residual |  .076186728       166  .000458956   R-squared       =    0.5707
+-------------+----------------------------------   Adj R-squared   =    0.5164
+       Total |  .177471718       187  .000949047   Root MSE        =    .02142
+
+-----------------------------------------------------------------------------------
+ovrl_food_insec~e | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0106475   .0044008    -2.42   0.017    -.0193362   -.0019588
+       1.maxtreat |   -.014185   .0051149    -2.77   0.006    -.0242836   -.0040863
+                  |
+pre_post#maxtreat |
+             1 1  |   .0056833    .006672     0.85   0.396    -.0074897    .0188562
+                  |
+         ALUBE001 |   5.98e-07   3.68e-07     1.62   0.106    -1.29e-07    1.32e-06
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -2.48e-07   2.79e-07    -0.89   0.376    -8.00e-07    3.03e-07
+         ALUCE003 |  -2.36e-07   2.76e-07    -0.86   0.394    -7.82e-07    3.09e-07
+         ALUCE004 |   1.38e-06   7.44e-07     1.86   0.065    -8.73e-08    2.85e-06
+         ALUCE005 |  -1.87e-07   2.78e-07    -0.67   0.503    -7.36e-07    3.63e-07
+         ALUCE006 |  -9.33e-07   1.51e-06    -0.62   0.537    -3.91e-06    2.05e-06
+         ALUCE007 |  -3.60e-07   2.68e-07    -1.34   0.182    -8.90e-07    1.71e-07
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -2.51e-07   2.92e-07    -0.86   0.390    -8.28e-07    3.25e-07
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |  -4.92e-07   3.22e-07    -1.53   0.129    -1.13e-06    1.44e-07
+         ALWVE002 |   7.06e-07   2.92e-07     2.41   0.017     1.29e-07    1.28e-06
+         ALWVE003 |   3.16e-07   2.96e-07     1.07   0.288    -2.69e-07    9.00e-07
+         ALWVE004 |  -4.84e-07   6.36e-07    -0.76   0.448    -1.74e-06    7.71e-07
+         ALWVE005 |   8.11e-07   5.67e-07     1.43   0.154    -3.08e-07    1.93e-06
+         ALWVE006 |   7.97e-08   3.29e-07     0.24   0.809    -5.70e-07    7.30e-07
+         ALWVE007 |   1.16e-06   7.74e-07     1.50   0.137    -3.71e-07    2.68e-06
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   7.94e-08   8.41e-08     0.94   0.346    -8.66e-08    2.45e-07
+         ALXME002 |  -3.57e-07   2.28e-07    -1.57   0.119    -8.07e-07    9.25e-08
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |  -4.93e-08   1.09e-07    -0.45   0.651    -2.64e-07    1.65e-07
+         ALZLE003 |          0  (omitted)
+            _cons |   .1277587   .0037022    34.51   0.000     .1204493    .1350682
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root/Do-File.do"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. sort fips year
+
+. gen treat = school_closing_c>1 if school_closing_c!=99
+(3 missing values generated)
+
+. 
+. bysort fips: egen maxtreat = max(treat)
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat, robust
+
+Linear regression                               Number of obs     =        188
+                                                F(3, 184)         =       2.87
+                                                Prob > F          =     0.0380
+                                                R-squared         =     0.0426
+                                                Root MSE          =     .03039
+
+-----------------------------------------------------------------------------------
+                  |               Robust
+ovrl_food_insec~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0100517   .0060779    -1.65   0.100    -.0220431    .0019396
+       1.maxtreat |  -.0107059   .0064011    -1.67   0.096     -.023335    .0019231
+                  |
+pre_post#maxtreat |
+             1 1  |   .0030517    .008661     0.35   0.725    -.0140358    .0201393
+                  |
+            _cons |   .1198448   .0044476    26.95   0.000       .11107    .1286197
+-----------------------------------------------------------------------------------
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_fu
+> ll' `pub_assistance' `tenure', robust
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+Linear regression                               Number of obs     =        188
+                                                F(21, 166)        =      13.38
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.5707
+                                                Root MSE          =     .02142
+
+-----------------------------------------------------------------------------------
+                  |               Robust
+ovrl_food_insec~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0106475   .0048933    -2.18   0.031    -.0203087   -.0009863
+       1.maxtreat |   -.014185   .0052383    -2.71   0.007    -.0245273   -.0038427
+                  |
+pre_post#maxtreat |
+             1 1  |   .0056833   .0064013     0.89   0.376    -.0069552    .0183217
+                  |
+         ALUBE001 |   5.98e-07   3.33e-07     1.80   0.074    -5.88e-08    1.25e-06
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -2.48e-07   1.98e-07    -1.26   0.211    -6.39e-07    1.42e-07
+         ALUCE003 |  -2.36e-07   1.94e-07    -1.22   0.225    -6.20e-07    1.47e-07
+         ALUCE004 |   1.38e-06   5.78e-07     2.39   0.018     2.39e-07    2.52e-06
+         ALUCE005 |  -1.87e-07   2.01e-07    -0.93   0.355    -5.84e-07    2.11e-07
+         ALUCE006 |  -9.33e-07   9.85e-07    -0.95   0.345    -2.88e-06    1.01e-06
+         ALUCE007 |  -3.60e-07   1.91e-07    -1.88   0.062    -7.37e-07    1.82e-08
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -2.51e-07   2.03e-07    -1.24   0.216    -6.51e-07    1.48e-07
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |  -4.92e-07   3.43e-07    -1.43   0.153    -1.17e-06    1.85e-07
+         ALWVE002 |   7.06e-07   2.88e-07     2.45   0.015     1.37e-07    1.27e-06
+         ALWVE003 |   3.16e-07   2.61e-07     1.21   0.228    -1.99e-07    8.31e-07
+         ALWVE004 |  -4.84e-07   4.74e-07    -1.02   0.309    -1.42e-06    4.52e-07
+         ALWVE005 |   8.11e-07   4.79e-07     1.69   0.093    -1.36e-07    1.76e-06
+         ALWVE006 |   7.97e-08   2.57e-07     0.31   0.757    -4.28e-07    5.87e-07
+         ALWVE007 |   1.16e-06   6.55e-07     1.77   0.079    -1.35e-07    2.45e-06
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   7.94e-08   6.88e-08     1.15   0.250    -5.65e-08    2.15e-07
+         ALXME002 |  -3.57e-07   1.81e-07    -1.97   0.050    -7.14e-07   -6.66e-11
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |  -4.93e-08   9.01e-08    -0.55   0.585    -2.27e-07    1.29e-07
+         ALZLE003 |          0  (omitted)
+            _cons |   .1277587   .0043619    29.29   0.000     .1191468    .1363707
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. sort fips year
+
+. gen treat = school_closing_c>2 if school_closing_c!=99
+(3 missing values generated)
+
+. 
+. bysort fips: egen maxtreat = max(treat)
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat, robust
+
+Linear regression                               Number of obs     =        188
+                                                F(3, 184)         =       3.22
+                                                Prob > F          =     0.0239
+                                                R-squared         =     0.0387
+                                                Root MSE          =     .03045
+
+-----------------------------------------------------------------------------------
+                  |               Robust
+ovrl_food_insec~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0093614    .004885    -1.92   0.057    -.0189993    .0002764
+       1.maxtreat |  -.0146396   .0073865    -1.98   0.049    -.0292128   -.0000665
+                  |
+pre_post#maxtreat |
+             1 1  |   .0040887   .0102863     0.40   0.691    -.0162055     .024383
+                  |
+            _cons |   .1174578   .0036035    32.60   0.000     .1103484    .1245673
+-----------------------------------------------------------------------------------
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_fu
+> ll' `pub_assistance' `tenure', robust
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+Linear regression                               Number of obs     =        188
+                                                F(21, 166)        =      13.77
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.5795
+                                                Root MSE          =      .0212
+
+-----------------------------------------------------------------------------------
+                  |               Robust
+ovrl_food_insec~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0098696   .0039848    -2.48   0.014    -.0177369   -.0020023
+       1.maxtreat |  -.0222144   .0059139    -3.76   0.000    -.0338906   -.0105382
+                  |
+pre_post#maxtreat |
+             1 1  |   .0077347   .0078291     0.99   0.325    -.0077227    .0231921
+                  |
+         ALUBE001 |   6.33e-07   3.37e-07     1.88   0.062    -3.22e-08    1.30e-06
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -3.37e-07   2.10e-07    -1.60   0.111    -7.52e-07    7.79e-08
+         ALUCE003 |  -3.11e-07   2.08e-07    -1.49   0.137    -7.23e-07    1.00e-07
+         ALUCE004 |   1.04e-06   6.00e-07     1.73   0.085    -1.46e-07    2.22e-06
+         ALUCE005 |  -2.85e-07   2.13e-07    -1.34   0.182    -7.06e-07    1.35e-07
+         ALUCE006 |  -1.33e-06   1.06e-06    -1.26   0.211    -3.43e-06    7.62e-07
+         ALUCE007 |  -4.32e-07   2.00e-07    -2.16   0.032    -8.28e-07   -3.68e-08
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -3.53e-07   2.21e-07    -1.59   0.113    -7.89e-07    8.43e-08
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |  -4.42e-07   3.47e-07    -1.27   0.205    -1.13e-06    2.43e-07
+         ALWVE002 |   6.95e-07   2.75e-07     2.52   0.013     1.51e-07    1.24e-06
+         ALWVE003 |   2.31e-07   2.47e-07     0.94   0.350    -2.56e-07    7.18e-07
+         ALWVE004 |  -6.77e-07   4.79e-07    -1.41   0.159    -1.62e-06    2.68e-07
+         ALWVE005 |   1.01e-06   4.52e-07     2.24   0.026     1.20e-07    1.90e-06
+         ALWVE006 |   8.27e-08   2.50e-07     0.33   0.741    -4.10e-07    5.75e-07
+         ALWVE007 |   1.42e-06   6.61e-07     2.14   0.034     1.10e-07    2.72e-06
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   6.27e-08   6.38e-08     0.98   0.327    -6.33e-08    1.89e-07
+         ALXME002 |  -2.88e-07   1.82e-07    -1.59   0.114    -6.47e-07    7.01e-08
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |  -2.97e-08   8.99e-08    -0.33   0.742    -2.07e-07    1.48e-07
+         ALZLE003 |          0  (omitted)
+            _cons |   .1253746   .0035129    35.69   0.000     .1184389    .1323102
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. do "/var/folders/70/tr45ddp509g546tg3m28htx00000gn/T//SD29542.000000"
+
+. *THESIS // Covid policy do-file
+. 
+. cd "/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root"
+/Users/shivgarge/Desktop/Root/Research/Thesis/Data/Controls/Function_base/Root
+
+. 
+. *log using "session_log.log", replace
+. 
+. use "Master_V5.dta", clear
+
+. 
+. *------------------------------------------------------------------------------*
+. 
+. *First, let's make sure there is a pre-post dummy for the diff-in-diff
+. 
+. gen pre_post = cond(year == 2021, 1, 0)
+
+. 
+. *------------------------------------------------------------------------------*
+.  
+. /*
+> 
+> Lets set a vector of controls based on the catagories.
+> 
+> Below is the variable dictionary for the universe of controls used in this do-file
+> 
+>     Table 1:     Sex by Age
+>     Universe:    Total population
+>     Source code: B01001
+>     NHGIS code:  ALT0
+>         ALT0E001:    Total
+>         ALT0E002:    Male
+>         ALT0E003:    Male: Under 5 years
+>         ALT0E004:    Male: 5 to 9 years
+>         ALT0E005:    Male: 10 to 14 years
+>         ALT0E006:    Male: 15 to 17 years
+>         ALT0E007:    Male: 18 and 19 years
+>         ALT0E008:    Male: 20 years
+>         ALT0E009:    Male: 21 years
+>         ALT0E010:    Male: 22 to 24 years
+>         ALT0E011:    Male: 25 to 29 years
+>         ALT0E012:    Male: 30 to 34 years
+>         ALT0E013:    Male: 35 to 39 years
+>         ALT0E014:    Male: 40 to 44 years
+>         ALT0E015:    Male: 45 to 49 years
+>         ALT0E016:    Male: 50 to 54 years
+>         ALT0E017:    Male: 55 to 59 years
+>         ALT0E018:    Male: 60 and 61 years
+>         ALT0E019:    Male: 62 to 64 years
+>         ALT0E020:    Male: 65 and 66 years
+>         ALT0E021:    Male: 67 to 69 years
+>         ALT0E022:    Male: 70 to 74 years
+>         ALT0E023:    Male: 75 to 79 years
+>         ALT0E024:    Male: 80 to 84 years
+>         ALT0E025:    Male: 85 years and over
+>         ALT0E026:    Female
+>         ALT0E027:    Female: Under 5 years
+>         ALT0E028:    Female: 5 to 9 years
+>         ALT0E029:    Female: 10 to 14 years
+>         ALT0E030:    Female: 15 to 17 years
+>         ALT0E031:    Female: 18 and 19 years
+>         ALT0E032:    Female: 20 years
+>         ALT0E033:    Female: 21 years
+>         ALT0E034:    Female: 22 to 24 years
+>         ALT0E035:    Female: 25 to 29 years
+>         ALT0E036:    Female: 30 to 34 years
+>         ALT0E037:    Female: 35 to 39 years
+>         ALT0E038:    Female: 40 to 44 years
+>         ALT0E039:    Female: 45 to 49 years
+>         ALT0E040:    Female: 50 to 54 years
+>         ALT0E041:    Female: 55 to 59 years
+>         ALT0E042:    Female: 60 and 61 years
+>         ALT0E043:    Female: 62 to 64 years
+>         ALT0E044:    Female: 65 and 66 years
+>         ALT0E045:    Female: 67 to 69 years
+>         ALT0E046:    Female: 70 to 74 years
+>         ALT0E047:    Female: 75 to 79 years
+>         ALT0E048:    Female: 80 to 84 years
+>         ALT0E049:    Female: 85 years and over
+>  
+>     Table 2:     Total Population
+>     Universe:    Total population
+>     Source code: B01003
+>     NHGIS code:  ALUB
+>         ALUBE001:    Total
+>  
+>     Table 3:     Race
+>     Universe:    Total population
+>     Source code: B02001
+>     NHGIS code:  ALUC
+>         ALUCE001:    Total
+>         ALUCE002:    White alone
+>         ALUCE003:    Black or African American alone
+>         ALUCE004:    American Indian and Alaska Native alone
+>         ALUCE005:    Asian alone
+>         ALUCE006:    Native Hawaiian and Other Pacific Islander alone
+>         ALUCE007:    Some other race alone
+>         ALUCE008:    Two or more races
+>         ALUCE009:    Two or more races: Two races including Some other race
+>         ALUCE010:    Two or more races: Two races excluding Some other race, and three or more race
+> s
+>  
+>     Table 4:     Ratio of Income to Poverty Level in the Past 12 Months
+>     Universe:    Population for whom poverty status is determined
+>     Source code: C17002
+>     NHGIS code:  ALWV
+>         ALWVE001:    Total
+>         ALWVE002:    Under .50
+>         ALWVE003:    .50 to .99
+>         ALWVE004:    1.00 to 1.24
+>         ALWVE005:    1.25 to 1.49
+>         ALWVE006:    1.50 to 1.84
+>         ALWVE007:    1.85 to 1.99
+>         ALWVE008:    2.00 and over
+>  
+>     Table 5:     Public Assistance Income or Food Stamps/SNAP in the Past 12 Months for Households
+>     Universe:    Households
+>     Source code: B19058
+>     NHGIS code:  ALXM
+>         ALXME001:    Total
+>         ALXME002:    With cash public assistance or Food Stamps/SNAP
+>         ALXME003:    No cash public assistance or Food Stamps/SNAP
+>  
+>     Table 6:     Tenure
+>     Universe:    Occupied housing units
+>     Source code: B25003
+>     NHGIS code:  ALZL
+>         ALZLE001:    Total
+>         ALZLE002:    Owner occupied
+>         ALZLE003:    Renter occupied
+>  
+>     Table 7:     Tenure (Black or African American Alone Householder)
+>     Universe:    Occupied housing units with a householder who is Black or African American alone
+>     Source code: B25003B
+>     NHGIS code:  ALZN
+>         ALZNE001:    Total
+>         ALZNE002:    Owner occupied
+>         ALZNE003:    Renter occupied
+>  
+>     Table 8:     Tenure (White Alone, Not Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is White alone, not Hispanic or Lati
+> no
+>     Source code: B25003H
+>     NHGIS code:  ALZT
+>         ALZTE001:    Total
+>         ALZTE002:    Owner occupied
+>         ALZTE003:    Renter occupied
+>  
+>     Table 9:     Tenure (Hispanic or Latino Householder)
+>     Universe:    Occupied housing units with a householder who is Hispanic or Latino
+>     Source code: B25003I
+>     NHGIS code:  ALZU
+>         ALZUE001:    Total
+>         ALZUE002:    Owner occupied
+>         ALZUE003:    Renter occupied
+>  
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> */
+. 
+. 
+. 
+. *Overall control catagories
+. 
+. local age_vector_full "ALT0E001 ALT0E002 ALT0E003 ALT0E004 ALT0E005 ALT0E006 ALT0E007 ALT0E008 ALT0
+> E009 ALT0E010 ALT0E011 ALT0E012 ALT0E013 ALT0E014 ALT0E015 ALT0E016 ALT0E017 ALT0E018 ALT0E019 ALT0
+> E020 ALT0E021 ALT0E022 ALT0E023 ALT0E024 ALT0E025 ALT0E026 ALT0E027 ALT0E028 ALT0E029 ALT0E030 ALT0
+> E031 ALT0E032 ALT0E033 ALT0E034 ALT0E035 ALT0E036 ALT0E037 ALT0E038 ALT0E039 ALT0E040 ALT0E041 ALT0
+> E042 ALT0E043 ALT0E044 ALT0E045 ALT0E046 ALT0E047 ALT0E048 ALT0E049"
+
+. 
+. local population "ALUBE001"
+
+. 
+. local race_vector_full "ALUCE001 ALUCE002 ALUCE003 ALUCE004 ALUCE005 ALUCE006 ALUCE007 ALUCE008 ALU
+> CE009 ALUCE010"
+
+. 
+. local inc_pov_rati_vector_full "ALWVE001 ALWVE002 ALWVE003 ALWVE004 ALWVE005 ALWVE006 ALWVE007 ALWV
+> E008"
+
+. 
+. local pub_assistance "ALXME001 ALXME002 ALXME003"
+
+. 
+. 
+. local tenure "ALZLE001 ALZLE002 ALZLE003"
+
+. 
+. local tenure_african_american "ALZNE001 ALZNE002 ALZNE003"
+
+. 
+. local tenure_white "ALZTE001 ALZTE002 ALZTE003"
+
+. 
+. local tenure_hispanic "ALZUE001 ALZUE002 ALZUE003"
+
+. 
+. *Race Based control groups
+. 
+. sort fips year
+
+. gen treat = school_closing_c>1 if school_closing_c!=99
+(3 missing values generated)
+
+. 
+. bysort fips: egen maxtreat = max(treat)
+
+. 
+. reg ovrl_food_insec_rate pre_post, robust
+
+Linear regression                               Number of obs     =        188
+                                                F(1, 186)         =       3.97
+                                                Prob > F          =     0.0478
+                                                R-squared         =     0.0209
+                                                Root MSE          =     .03056
+
+------------------------------------------------------------------------------
+             |               Robust
+ovrl_food_~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+    pre_post |   -.008883   .0044583    -1.99   0.048    -.0176784   -.0000876
+       _cons |   .1157447   .0032888    35.19   0.000     .1092565    .1222328
+------------------------------------------------------------------------------
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat, robust
+
+Linear regression                               Number of obs     =        188
+                                                F(3, 184)         =       2.87
+                                                Prob > F          =     0.0380
+                                                R-squared         =     0.0426
+                                                Root MSE          =     .03039
+
+-----------------------------------------------------------------------------------
+                  |               Robust
+ovrl_food_insec~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0100517   .0060779    -1.65   0.100    -.0220431    .0019396
+       1.maxtreat |  -.0107059   .0064011    -1.67   0.096     -.023335    .0019231
+                  |
+pre_post#maxtreat |
+             1 1  |   .0030517    .008661     0.35   0.725    -.0140358    .0201393
+                  |
+            _cons |   .1198448   .0044476    26.95   0.000       .11107    .1286197
+-----------------------------------------------------------------------------------
+
+. 
+. reg ovrl_food_insec_rate pre_post##maxtreat `population' `race_vector_full' `inc_pov_rati_vector_fu
+> ll' `pub_assistance' `tenure', robust
+note: ALUCE001 omitted because of collinearity.
+note: ALUCE008 omitted because of collinearity.
+note: ALUCE010 omitted because of collinearity.
+note: ALWVE008 omitted because of collinearity.
+note: ALXME003 omitted because of collinearity.
+note: ALZLE001 omitted because of collinearity.
+note: ALZLE003 omitted because of collinearity.
+
+Linear regression                               Number of obs     =        188
+                                                F(21, 166)        =      13.38
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.5707
+                                                Root MSE          =     .02142
+
+-----------------------------------------------------------------------------------
+                  |               Robust
+ovrl_food_insec~e | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+------------------+----------------------------------------------------------------
+       1.pre_post |  -.0106475   .0048933    -2.18   0.031    -.0203087   -.0009863
+       1.maxtreat |   -.014185   .0052383    -2.71   0.007    -.0245273   -.0038427
+                  |
+pre_post#maxtreat |
+             1 1  |   .0056833   .0064013     0.89   0.376    -.0069552    .0183217
+                  |
+         ALUBE001 |   5.98e-07   3.33e-07     1.80   0.074    -5.88e-08    1.25e-06
+         ALUCE001 |          0  (omitted)
+         ALUCE002 |  -2.48e-07   1.98e-07    -1.26   0.211    -6.39e-07    1.42e-07
+         ALUCE003 |  -2.36e-07   1.94e-07    -1.22   0.225    -6.20e-07    1.47e-07
+         ALUCE004 |   1.38e-06   5.78e-07     2.39   0.018     2.39e-07    2.52e-06
+         ALUCE005 |  -1.87e-07   2.01e-07    -0.93   0.355    -5.84e-07    2.11e-07
+         ALUCE006 |  -9.33e-07   9.85e-07    -0.95   0.345    -2.88e-06    1.01e-06
+         ALUCE007 |  -3.60e-07   1.91e-07    -1.88   0.062    -7.37e-07    1.82e-08
+         ALUCE008 |          0  (omitted)
+         ALUCE009 |  -2.51e-07   2.03e-07    -1.24   0.216    -6.51e-07    1.48e-07
+         ALUCE010 |          0  (omitted)
+         ALWVE001 |  -4.92e-07   3.43e-07    -1.43   0.153    -1.17e-06    1.85e-07
+         ALWVE002 |   7.06e-07   2.88e-07     2.45   0.015     1.37e-07    1.27e-06
+         ALWVE003 |   3.16e-07   2.61e-07     1.21   0.228    -1.99e-07    8.31e-07
+         ALWVE004 |  -4.84e-07   4.74e-07    -1.02   0.309    -1.42e-06    4.52e-07
+         ALWVE005 |   8.11e-07   4.79e-07     1.69   0.093    -1.36e-07    1.76e-06
+         ALWVE006 |   7.97e-08   2.57e-07     0.31   0.757    -4.28e-07    5.87e-07
+         ALWVE007 |   1.16e-06   6.55e-07     1.77   0.079    -1.35e-07    2.45e-06
+         ALWVE008 |          0  (omitted)
+         ALXME001 |   7.94e-08   6.88e-08     1.15   0.250    -5.65e-08    2.15e-07
+         ALXME002 |  -3.57e-07   1.81e-07    -1.97   0.050    -7.14e-07   -6.66e-11
+         ALXME003 |          0  (omitted)
+         ALZLE001 |          0  (omitted)
+         ALZLE002 |  -4.93e-08   9.01e-08    -0.55   0.585    -2.27e-07    1.29e-07
+         ALZLE003 |          0  (omitted)
+            _cons |   .1277587   .0043619    29.29   0.000     .1191468    .1363707
+-----------------------------------------------------------------------------------
+
+. 
+end of do-file
+
+. tab pre_post year
+
+           |         year
+  pre_post |      2019       2021 |     Total
+-----------+----------------------+----------
+         0 |        94          0 |        94 
+         1 |         0         94 |        94 
+-----------+----------------------+----------
+     Total |        94         94 |       188 
+
